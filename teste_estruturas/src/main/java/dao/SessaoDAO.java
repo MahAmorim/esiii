@@ -21,17 +21,18 @@ public class SessaoDAO extends AbstractJdbcDAO {
             connection.setAutoCommit(false);
 
             StringBuilder sql = new StringBuilder();
-            sql.append("INSERT INTO sessao (id_ses, id_fxE_ses, id_fil, vm, vi, dti, dtf) VALUES (?, ?, ?, ?)");
+            sql.append("INSERT INTO sessao (id_ses, id_fxE_ses, id_sal, id_fil, vm, vi, dti, dtf) VALUES (?, ?, ?, ?)");
 
             pst = connection.prepareStatement(sql.toString());
             pst.setInt(1, ses.getId());
-            pst.setInt(2, ses.getId());
-            pst.setInt(3, ses.getId());
-            pst.setFloat(4, ses.getValor_meia());
-            pst.setFloat(5, ses.getValor_inteira());
-            pst.setDate(6, ses.getDt_incio());
-            pst.setDate(7, ses.getDt_fim());
-
+            pst.setFloat(2, ses.getValor_meia());
+            pst.setFloat(3, ses.getValor_inteira());
+            pst.setString(4, ses.getDt_incio());
+            pst.setString(5, ses.getDt_fim());
+            pst.setInt(6, ses.getFxe());
+            pst.setInt(7, ses.getSala().getId());
+            pst.setInt(8, ses.getFilme().getId());
+        
             pst.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -62,13 +63,14 @@ public class SessaoDAO extends AbstractJdbcDAO {
             sql.append("WHERE id_ses=?");
 
             pst = connection.prepareStatement(sql.toString());
-            pst.setInt(1, ses.getId());
-            pst.setInt(2, ses.getId());
-            pst.setFloat(3, ses.getValor_meia());
-            pst.setFloat(4, ses.getValor_inteira());
-            pst.setDate(5, ses.getDt_incio());
-            pst.setDate(6, ses.getDt_fim());
-            pst.setInt(7, ses.getId());
+            pst.setFloat(1, ses.getValor_meia());
+            pst.setFloat(2, ses.getValor_inteira());
+            pst.setString(3, ses.getDt_incio());
+            pst.setString(4, ses.getDt_fim());
+            pst.setInt(5, ses.getFxe());
+            pst.setInt(6, ses.getSala().getId());
+            pst.setInt(7, ses.getFilme().getId());
+            pst.setInt(8, ses.getId());
 
             pst.executeUpdate();
             connection.commit();
@@ -105,14 +107,14 @@ public class SessaoDAO extends AbstractJdbcDAO {
 
             pst = connection.prepareStatement(sql.toString());
             pst.setInt(1, ses.getId());
-            pst.setInt(2, ses.getId());
-            pst.setInt(3, ses.getId());
-            pst.setFloat(4, ses.getValor_meia());
-            pst.setFloat(5, ses.getValor_inteira());
-            pst.setDate(6, ses.getDt_incio());
-            pst.setDate(7, ses.getDt_fim());
+            pst.setFloat(2, ses.getValor_meia());
+            pst.setFloat(3, ses.getValor_inteira());
+            pst.setString(4, ses.getDt_incio());
+            pst.setString(5, ses.getDt_fim());
+            pst.setInt(6, ses.getFxe());
+            pst.setInt(7, ses.getSala().getId());
+            pst.setInt(8, ses.getFilme().getId());
             
-             
             pst.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
