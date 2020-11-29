@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import Command.ICommand;
 import Dominio.EntidadeDominio;
 import Dominio.Resultado;
 import ViewHelper.SalaVH;
-import ViewHelperIViewHelper;
+import ViewHelper.IViewHelper;
 
 @WebServlet(urlPatterns = {"/SalaController"})
 public class SalaController extends HttpServlet {
@@ -24,7 +24,7 @@ public class SalaController extends HttpServlet {
     private Map<String, ICommand> commands;
     private Map<String, IViewHelper> vhs;
     
-    public ControleFuncionario() {
+    public SalaController() {
 		commands = new HashMap<String, ICommand>();
 	
 		vhs = new HashMap<String, IViewHelper>();
