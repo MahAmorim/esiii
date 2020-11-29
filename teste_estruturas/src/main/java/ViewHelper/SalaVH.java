@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import Dominio.Sala;
 import Dominio.EntidadeDominio;
+import Dominio.Func;
 import Dominio.Resultado;
 
 
@@ -19,56 +20,44 @@ public class SalaVH implements IViewHelper {
 	public EntidadeDominio getEntidade(HttpServletRequest request) {
 
 		HttpSession session = null;
-		Sala sala = null;
+		Func func = null;
 		String operacao = request.getParameter("operacao");
 
-		/*if (operacao.equals("SALVAR")) {
-			funcionario = criarFuncionario(request);
+		if (operacao.equals("SALVAR")) {
+			func = criarFunc(request);
 
 		} else if (operacao.equals("ALTERAR")) {
-			funcionario = criarFuncionario(request);
+			func = criarFunc(request);
 
 		} else if (operacao.equals("EXCLUIR")) {
-			funcionario = criarFuncionario(request);
+			func = criarFunc(request);
 
 		} else if (operacao.equals("CONSULTAR")) {
-			funcionario = criarFuncionario(request);
+			func = criarFunc(request);
 
 		} else if (operacao.equals("PERFIL")) {
-			int id_funcionario = Integer.parseInt(request.getParameter("id"));
-			funcionario = new Funcionario();
-			funcionario.setId(id_funcionario);
-		}*/
+			int id_func = Integer.parseInt(request.getParameter("id"));
+			func = new Func();
+			func.setId(id_func);
+		}
 
-		return sala;
+		return func;
 
 	}
 
-	private Sala criarFuncionario(HttpServletRequest request) {
+	private Sala criarFunc(HttpServletRequest request) {
 
 		Sala sala = new Sala();
 
-		/*Usuario usuario = new Usuario();
-		usuario.setLogin(request.getParameter("txtEmail"));
-		usuario.setSenha(request.getParameter("txtSenha"));
-
-		String idFuncionario = request.getParameter("txtIdFuncionario");
-		String idPerfil = request.getParameter("txtPerfil");
-		String idCargo = request.getParameter("txtCargo");
-		String idSetor = request.getParameter("txtSetor");
-		String idRegional = request.getParameter("txtRegional");
-		String idCadastradoPor = request.getParameter("txtCadastradoPor");
-
-		if (idPerfil != null && !idPerfil.trim().equals("")) {
-			perfil.setId(Integer.parseInt(idPerfil));
-		}
-
-		usuario.setPerfilAtendimento(perfil);*/
-		Sala.setCodigo(request.getParameter("txtCodigo"));
-		/*Sala.setTipo(request.getParameter("txtTipo"));
-		Sala.setTipo(request.getParameter("txtCapacidade"));*/
-
-		return Sala;
+		Func func = new Func();
+		func.setEmail(request.getParameter("txtEmail"));
+		func.setSenha(request.getParameter("txtSenha"));
+		String idFunc = request.getParameter("txtIdFuncionario");
+		//func.setPerfilAtendimento(perfil);
+		sala.setCodigo(request.getParameter("intCodigo"));
+		sala.setTipo(request.getParameter("intTipo"));
+		sala.setTipo(request.getParameter("intCapacidade"));
+		return sala;
 	}
 
 	@Override
@@ -83,7 +72,7 @@ public class SalaVH implements IViewHelper {
 			d = request.getRequestDispatcher("formadd.jsp");
 
 		} else if (operacao.equals("CADASTRAR")) {
-			// Funcionario funcionario = (Funcionario) resultado.getEntidades().get(0);
+			Func func = (Func) resultado.getEntidades().get(0);
 			resultado.setMsg("Cadastro realizado com sucesso.");
 			request.getSession().setAttribute("resultado", resultado);
 			d = request.getRequestDispatcher("formadd.jsp");
