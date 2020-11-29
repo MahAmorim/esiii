@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import Dominio.EntidadeDominio;
 import Dominio.Sala;
+import java.sql.ResultSet;
 
 public class SalaDAO extends AbstractJdbcDAO {
 
@@ -33,7 +34,15 @@ public class SalaDAO extends AbstractJdbcDAO {
             Timestamp time = new Timestamp(sala.getDtCadastro().getTime());
             pst.setTimestamp(3, time);
             pst.executeUpdate();
+            /*
+            ResultSet rs = pst.getGeneratedKeys();
+            if (rs.next()){
+                int last_inserted_id = rs.getInt(1);
+                sala.setId(last_inserted_id);
+            }          
+            */
             connection.commit();
+            
         } catch (SQLException e) {
             try {
                 connection.rollback();
