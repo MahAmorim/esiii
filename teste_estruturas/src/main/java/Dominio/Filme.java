@@ -1,12 +1,12 @@
 package Dominio;
 
-import java.util.Date;
+import java.sql.Time;
 
 public class Filme extends EntidadeDominio {
- 	
+
     private String Titulo;
-    private Date Estreia;
-    private Date Duracao;
+    private String Estreia;
+    private Time Duracao;
     private String Diretor;
     private String Elenco;
     private String Sinopse;
@@ -19,19 +19,21 @@ public class Filme extends EntidadeDominio {
         this.Titulo = Titulo;
     }
 
-    public Date getEstreia() {
+    public String getEstreia() {
         return Estreia;
     }
 
-    public void setEstreia(Date Estreia) {
+    public void setEstreia(String Estreia) {
         this.Estreia = Estreia;
     }
 
-    public Date getDuracao() {
+    
+
+    public Time getDuracao() {
         return Duracao;
     }
 
-    public void setDuracao(Date Duracao) {
+    public void setDuracao(Time Duracao) {
         this.Duracao = Duracao;
     }
 
@@ -58,7 +60,5 @@ public class Filme extends EntidadeDominio {
     public void setSinopse(String Sinopse) {
         this.Sinopse = Sinopse;
     }
-    
-    
-    
+
 }
